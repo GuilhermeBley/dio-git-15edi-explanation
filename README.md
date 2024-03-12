@@ -5,7 +5,7 @@ O comando `git diff` é uma ferramenta essencial no Git, sendo usado para visual
 O comando em questão, o `git diff`, possuí diversas funcionalidades, sendo elas:
 - Comparação entre arquivos
 - Comparação de binários
-- Comparação entre _branches_, _commits_ e _merges_
+- Comparação entre _branches_ e _commits_
 - Visualização de alterações
 
 Agora que foi mostrado sobre as principais funcionalidades, será demonstrado e exemplificado os tópicos.
@@ -19,7 +19,7 @@ Antes de tudo, vamos primeiramentes explicar os contextos de arquivos que existe
 Como pode ser visto na imagem, o Git possuí diversas fontes comparativas para executar a comparação do código. Comecando pelo _HEAD_, ele basicamente é um _commit_ anterior aos arquivos atuais. Já o _HEAD~{n}_ específica um comando antepenúltimo, podendo navegar entre os últimos _commits_.
 Portanto, enquanto _HEAD_ se refere ao commit atual, _HEAD~_ se refere ao commit pai desse commit atual. Isso pode ser útil para acessar commits anteriores, especialmente ao navegar pela história do projeto ou ao realizar operações como git diff, git checkout, entre outras.
 <br/>
-Seguindo adiante na imagem, podemos indentificar outros dois importantes quadrantes, que é o `Index` e a `Working Tree`. o `Index` é basicamente uma área intermediária entre o _Working Directory_ e o próximo _commit_. Ele é onde você prepara as modificações que deseja incluir no próximo _commit_, sendo também conhecida como _Staging Area_. Agora sobre o _Working Tree_, ela é o diretório do atual do sistema de arquivos onde os arquivos do projeto estão contidos, sendo as modificações feitas nele não adicionadas ao _commit_, permanecendo somente na máquina local.
+Seguindo adiante na imagem, podemos indentificar outros dois importantes quadrantes, que é o _Index_ e a _Working Tree_. o _Index_ é basicamente uma área intermediária entre o _Working Directory_ e o próximo _commit_. Ele é onde você prepara as modificações que deseja incluir no próximo _commit_, sendo também conhecida como _Staging Area_. Agora sobre o _Working Tree_, ela é o diretório do atual do sistema de arquivos onde os arquivos do projeto estão contidos, sendo as modificações feitas nele não adicionadas ao _commit_, permanecendo somente na máquina local.
 
 ## Comparação entre arquivos
 
@@ -68,13 +68,31 @@ Binary files a/binario.xlsx and b/binario.xlsx differ
 
 Nesse exemplo foi criado um arquivo `xlsx`, que não pode ser lido em formato de texto.
 
-## Comparação entre _branches_, _commits_ e _merges_
+## Comparação entre _branches_ e _commits_
 
-Quando é executado o `git diff`, o Git realiza uma comparação do estado atual do diretório de trabalho com o último commit feito na branch em que você está. Ele mostra as diferenças linha por linha, destacando as adições (linhas verdes) e remoções (linhas vermelhas).  
+Quando é executado o `git diff`, por padrão, o Git realiza uma comparação do estado atual do diretório de trabalho com o último commit feito na branch em que você está. Ele mostra as diferenças linha por linha, destacando as adições (linhas verdes) e remoções (linhas vermelhas). Porém, essa visualização de alterações acaba não sendo o suficiente em alguns casos, sendo necessário verificar outras _branches_ ou _commits_ anteriores.
+
+### Commit
+
+No caso de visualizar _commits_ anteriores ao último, pode-se utilizar da seguinte sintaxe:
+
+`git diff {hash} {area:opcional} {caminho_arquivo:opcional}`
+
+Como pode ser visto no comando, para coletar à partir de um _commit_ específico é necessário algumas informações, sendo elas o `hash`, que pode ser coletado de diversas formas, esse hash basicamente é o identificador de um commit específico, tendo cada _commit_ o seu próprio, tendo que ser obrigatóriamente informado no comando. O próximo parâmetro, que é a `area`, é opcional, podendo ser colocado de acordo com as necessidades das verificações de alterações, caso ela não sejá específicada, por padrão vai ser posto o _Working Tree_, mas caso haja necessidade, pode ser específicado a àrea, por exemplo: `HEAD`. E por fim, como foi visto no tópico anterior, ao final pode ser específicado um arquivo em `caminho_arquivo`.
+
+### Branches
+
+Para visualizar as alterações entre duas branches é necessário ter o nome das que deseja comparar, podendo ser consultado com o comando `git branch`. Com o nome da branch em mãos, os seguintes comandos podem ser feitos.
+
+Consulta das alterações de uma _branch_ à partir da atual.
+`git diff branch1`
+
+Consulta das alterações de duas _branchs_ distintas.
+`git diff branch1 branch2`
 
 ## Conclusão
 
-Apesar da maioria das IDEs atuais apresentarem ferramentas porderosas para o controle e visualização das modificações feitas, é de extrema importância entender e aplicar os conceitos oferecidos pela ferramenta `git diff`. Com o conhecimento dessa área é possível 
+Apesar da maioria das IDEs atuais apresentarem ferramentas porderosas para o controle e visualização das modificações feitas, é de extrema importância entender e aplicar os conceitos oferecidos pela ferramenta `git diff`. Com o conhecimento dessa área é possível realizar comparações complexas entre alterações de arquivos, conseguindo assim realizar revisões de código de maneira mais precisa e detalhada, identificando e compreendendo as alterações introduzidas por um conjunto específico de commits; Colaborar efetivamente com outros membros da equipe, discutindo e revisando alterações de código e também ter maior facilidade na resolução de conflitos de Merge, já que as alterações podem ser mais facilmente interpretadas.
 
 ## Referências
 - [Docs Git](https://git-scm.com/docs/git-diff)
