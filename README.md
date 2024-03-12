@@ -58,6 +58,16 @@ O resultado apresentado contém diversas informações importantes, começando p
 
 ## Comparação de binários
 
+Comparar binários com `git diff` pode ser útil para entender as diferenças entre as versões de arquivos binários, como imagens, arquivos executáveis, arquivos de vídeo, entre outros. A maneira de utilização do comando é exatamente a mesma, no entanto, neste caso ele não fornece uma visualização direta das alterações feitas, como faz os arquivos de texto. Em vez disso, ele exibirá uma mensagem indicando que os arquivos são diferentes, como pode ser visto no seguinte exemplo:
+
+```
+diff --git a/binario.xlsx b/binario.xlsx
+index 9645442..bca8b53 100644
+Binary files a/binario.xlsx and b/binario.xlsx differ
+```
+
+Nesse exemplo foi criado um arquivo `xlsx`, que não pode ser lido em formato de texto.
+
 ## Comparação entre _branches_, _commits_ e _merges_
 
 Quando é executado o `git diff`, o Git realiza uma comparação do estado atual do diretório de trabalho com o último commit feito na branch em que você está. Ele mostra as diferenças linha por linha, destacando as adições (linhas verdes) e remoções (linhas vermelhas).  
@@ -68,3 +78,4 @@ Apesar da maioria das IDEs atuais apresentarem ferramentas porderosas para o con
 
 ## Referências
 - [Docs Git](https://git-scm.com/docs/git-diff)
+- [Entendimento áreas](https://www.geeksforgeeks.org/git-diff/)
